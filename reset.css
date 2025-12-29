@@ -1,0 +1,76 @@
+/* 폰트 가져오기 및 정의 시작 */
+
+/* 1. Google Fonts - Asta Sans */
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&display=swap');
+
+/* 2. 한글 폰트 - Spoqa Han Sans Neo */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+/* 3. 영문 폰트 - Yuna's Tuesday (로컬 파일 가정) */
+/* 주의: 이 폰트가 정상적으로 표시되려면 'The_Tuesday_of_Younah.ttf' 파일이 
+         CSS 파일이 위치한 경로(예: reset.css와 같은 폴더)에 있어야 합니다. */
+@font-face {
+    font-family: "Yuna's Tuesday"; 
+    src: url('./The_Tuesday_of_Younah.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal;
+}
+
+/* 폰트 가져오기 및 정의 끝 */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	/* font: inherit; 이 줄을 완전히 제거하여 font-family가 적용되도록 합니다. */
+	vertical-align: baseline;
+    
+    /* 폰트 지정: 한글 우선순위 > 영문 지정 폰트 > Asta Sans(보조 영문) > 시스템 산세리프 */
+    font-family: 'Spoqa Han Sans Neo', "Yuna's Tuesday", 'Asta Sans', sans-serif;
+    font-weight: 400; /* 기본 폰트 굵기 지정 */
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.5; /* 가독성을 위해 기본 line-height를 1.5로 수정 */
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{
+	text-decoration: none;
+    color: inherit; /* 링크 색상을 부모 요소와 동일하게 상속 */
+}
