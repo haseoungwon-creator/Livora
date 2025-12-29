@@ -1,0 +1,551 @@
+/* 숨겨진 창이 열릴 때 뒷배경 어둡게 하는 오버레이 */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    z-index: 9000;
+    backdrop-filter: blur(10px);
+}
+
+.LivoraSubTitle {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('./cabinet/수납장.avif') center/cover no-repeat;
+    margin: 0;
+    overflow: hidden;
+}
+
+.LivoraSubTitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.LivoraSubTitle h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2;
+    animation: titleFadeIn 0.8s ease-out;
+}
+
+@keyframes titleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#LivoraSubBanner {
+    background-color: #D7C6B6;
+    width: 100%;
+    height: 1000px;
+    position: relative;
+}
+
+#LivoraSubBanner>.LivoraSubType {
+    position: relative;
+    display: flex;
+    transform: translate(-50%, 0);
+    top: 10%;
+    left: 50%;
+    width: 60%;
+    height: 850px;
+    overflow: hidden;
+}
+
+#LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ========== 새로운 제품 카드 스타일 ========== */
+#LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li {
+    position: relative;
+    cursor: pointer;
+    width: 300px;
+}
+
+.product-card-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card-item:hover {
+    transform: translateY(-8px);
+}
+
+.product-card-wrapper {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product-card-item:hover .product-card-wrapper {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.product-card-wrapper img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+    transition: transform 0.3s ease;
+}
+
+.product-card-item:hover .product-card-wrapper img {
+    transform: scale(1.05);
+}
+
+.product-card-info {
+    padding: 20px 25px;
+    background: white;
+    border-radius: 0 0 20px 20px;
+}
+
+.product-card-info .text {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.product-card-info .price {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #405B4D;
+}
+
+/* 기존 스타일 제거 */
+#LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li>span {
+    display: none;
+}
+
+#LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li>img {
+    display: none;
+}
+
+#LivoraSubBanner>.LivoraSubButton {
+    width: 20%;
+    height: 50px;
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 95%;
+}
+
+.LivoraSubButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.LivoraSubButton button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.2s ease;
+}
+
+.LivoraSubButton .Button {
+    font-weight: bold;
+    color: #777;
+}
+
+.LivoraSubButton .Button.active {
+    color: black;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.LivoraSubButton .navBtn {
+    font-size: 18px;
+}
+
+.LivoraSubButton button:hover {
+    color: black;
+    border-color: black;
+}
+
+.LivoraSubTypePage.first {
+    display: flex;
+}
+
+.LivoraSubTypePage.second,
+.LivoraSubTypePage.third {
+    display: none;
+}
+
+/* ========== 상세보기 모달 스타일 ========== */
+#LivoraSubBanner>.HiddenTab>.HideTab {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    max-height: 750px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5EBD9 50%, #E8DCC8 100%);
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    overflow: hidden;
+    border: 3px solid rgba(201, 181, 163, 0.5);
+    display: none;
+}
+
+.hideButton {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C9B5A3 0%, #E8DCC8 100%);
+    border: 3px solid #405B4D;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    color: #405B4D;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(64, 91, 77, 0.3);
+}
+
+.hideButton:hover {
+    background: linear-gradient(135deg, #405B4D 0%, #2E4438 100%);
+    color: #FFFFFF;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 8px 28px rgba(64, 91, 77, 0.5);
+}
+
+.HideTab .TabContent {
+    display: flex;
+    gap: 35px;
+    padding: 35px;
+    width: 100%;
+    height: 100%;
+}
+
+.HideTab .TabContent img {
+    flex: 0 0 60%;
+    width: 60%;
+    max-width: 60%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, #C9B5A3 0%, #B8A693 100%);
+}
+
+.HideTab .TabContent .text-area {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+}
+
+.HideTab .TabContent h2 {
+    margin: 0 0 30px 0;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #405B4D 0%, #5A7A67 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    letter-spacing: 0px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.HideTab .TabContent p {
+    font-size: 1.1em;
+    color: #2C2C2C;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+
+.HideTab .TabContent .price {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #405B4D 0%, #5A7A67 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 30px;
+    letter-spacing: -1px;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 15px;
+    background-color: #405B4D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    left: -7%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #2c3f35; 
+    transform: translateY(-2px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== 반응형 ========== */
+@media (max-width: 1200px) {
+    #LivoraSubBanner>.LivoraSubType {
+        width: 75%;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li {
+        width: 280px;
+    }
+    
+    .product-card-wrapper img {
+        height: 230px;
+    }
+}
+
+@media (max-width: 992px) {
+    #LivoraSubBanner>.LivoraSubType {
+        width: 85%;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage {
+        gap: 25px;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li {
+        width: 260px;
+    }
+    
+    .HideTab .TabContent {
+        flex-direction: column;
+        padding: 40px 30px;
+        text-align: center;
+        overflow-y: auto;
+    }
+    
+    .HideTab .TabContent img {
+        flex: none;
+        width: 80%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .HideTab .TabContent .text-area {
+        flex: none;
+        width: 100%;
+    }
+    
+    .HideTab .TabContent h2 {
+        font-size: 2em;
+    }
+    
+    .HideTab .TabContent .price {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .LivoraSubTitle {
+        height: 350px;
+    }
+    
+    .LivoraSubTitle h1 {
+        font-size: 3rem;
+    }
+    
+    #LivoraSubBanner {
+        height: 1100px;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType {
+        width: 90%;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage {
+        gap: 20px;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .product-card-wrapper img {
+        height: 280px;
+    }
+    
+    .product-card-info {
+        padding: 18px 22px;
+    }
+    
+    .product-card-info .text {
+        font-size: 1rem;
+    }
+    
+    .product-card-info .price {
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .LivoraSubTitle {
+        height: 300px;
+    }
+    
+    .LivoraSubTitle h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    #LivoraSubBanner {
+        height: 1200px;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType {
+        width: 95%;
+        top: 8%;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage {
+        gap: 18px;
+    }
+    
+    #LivoraSubBanner>.LivoraSubType>.LivoraSubTypePage>li {
+        width: 100%;
+    }
+    
+    .product-card-wrapper {
+        border-radius: 16px;
+    }
+    
+    .product-card-wrapper img {
+        height: 250px;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .product-card-info {
+        padding: 16px 20px;
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .product-card-info .text {
+        font-size: 0.95rem;
+    }
+    
+    .product-card-info .price {
+        font-size: 1.1rem;
+    }
+    
+    #LivoraSubBanner>.HiddenTab>.HideTab {
+        width: 95%;
+        height: 92vh;
+        border-radius: 24px;
+    }
+    
+    .HideTab .TabContent {
+        padding: 30px 20px;
+    }
+    
+    .hideButton {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .HideTab .TabContent h2 {
+        font-size: 1.6em;
+    }
+    
+    .HideTab .TabContent p {
+        font-size: 1em;
+    }
+    
+    .HideTab .TabContent .price {
+        font-size: 1.5em;
+    }
+    
+    #LivoraSubBanner>.LivoraSubButton {
+        width: 40%;
+        top: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    #LivoraSubBanner {
+        height: 1300px;
+    }
+    
+    .product-card-wrapper {
+        border-radius: 14px;
+    }
+    
+    .product-card-wrapper img {
+        height: 230px;
+        border-radius: 14px 14px 0 0;
+    }
+    
+    .product-card-info {
+        padding: 14px 18px;
+        border-radius: 0 0 14px 14px;
+    }
+}
